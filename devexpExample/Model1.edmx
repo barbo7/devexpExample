@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="devExpDenemeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Proje">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="100" />
+          <Property Name="SurecId" Type="int" />
+        </EntityType>
+        <EntityType Name="Sozlesme">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="100" />
+          <Property Name="Tarih" Type="date" />
+          <Property Name="Detay" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Surec">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="100" />
+          <Property Name="Aciklama" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'devExpDeneme.dbo.veriGetir' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="veriGetir">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="100" />
+          <Property Name="Tarih" Type="date" />
+          <Property Name="Detay" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'devExpDeneme.dbo.veriGetir2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="veriGetir2">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="100" />
+          <Property Name="SurecId" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'devExpDeneme.dbo.veriGetir3' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="veriGetir3">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="100" />
+          <Property Name="Aciklama" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK__Proje__SurecId__3B75D760">
+          <End Role="Surec" Type="Self.Surec" Multiplicity="0..1" />
+          <End Role="Proje" Type="Self.Proje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Surec">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Proje">
+              <PropertyRef Name="SurecId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="devExpDenemeModelStoreContainer">
+          <EntitySet Name="Proje" EntityType="Self.Proje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sozlesme" EntityType="Self.Sozlesme" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Surec" EntityType="Self.Surec" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="veriGetir" EntityType="Self.veriGetir" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [veriGetir].[Id] AS [Id], 
+    [veriGetir].[Ad] AS [Ad], 
+    [veriGetir].[Tarih] AS [Tarih], 
+    [veriGetir].[Detay] AS [Detay]
+    FROM [dbo].[veriGetir] AS [veriGetir]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="veriGetir2" EntityType="Self.veriGetir2" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [veriGetir2].[Id] AS [Id], 
+    [veriGetir2].[Ad] AS [Ad], 
+    [veriGetir2].[SurecId] AS [SurecId]
+    FROM [dbo].[veriGetir2] AS [veriGetir2]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="veriGetir3" EntityType="Self.veriGetir3" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [veriGetir3].[Id] AS [Id], 
+    [veriGetir3].[Ad] AS [Ad], 
+    [veriGetir3].[Aciklama] AS [Aciklama]
+    FROM [dbo].[veriGetir3] AS [veriGetir3]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Proje__SurecId__3B75D760" Association="Self.FK__Proje__SurecId__3B75D760">
+            <End Role="Surec" EntitySet="Surec" />
+            <End Role="Proje" EntitySet="Proje" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="devExpDenemeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Proje">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SurecId" Type="Int32" />
+          <NavigationProperty Name="Surec" Relationship="Self.FK__Proje__SurecId__3B75D760" FromRole="Proje" ToRole="Surec" />
+        </EntityType>
+        <EntityType Name="Sozlesme">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Tarih" Type="DateTime" Precision="0" />
+          <Property Name="Detay" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Surec">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Proje" Relationship="Self.FK__Proje__SurecId__3B75D760" FromRole="Surec" ToRole="Proje" />
+        </EntityType>
+        <EntityType Name="veriGetir">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Tarih" Type="DateTime" Precision="0" />
+          <Property Name="Detay" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="veriGetir2">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SurecId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="veriGetir3">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK__Proje__SurecId__3B75D760">
+          <End Role="Surec" Type="Self.Surec" Multiplicity="0..1" />
+          <End Role="Proje" Type="Self.Proje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Surec">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Proje">
+              <PropertyRef Name="SurecId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="devExpDenemeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Proje" EntityType="Self.Proje" />
+          <EntitySet Name="Sozlesme" EntityType="Self.Sozlesme" />
+          <EntitySet Name="Surec" EntityType="Self.Surec" />
+          <EntitySet Name="veriGetir" EntityType="Self.veriGetir" />
+          <EntitySet Name="veriGetir2" EntityType="Self.veriGetir2" />
+          <EntitySet Name="veriGetir3" EntityType="Self.veriGetir3" />
+          <AssociationSet Name="FK__Proje__SurecId__3B75D760" Association="Self.FK__Proje__SurecId__3B75D760">
+            <End Role="Surec" EntitySet="Surec" />
+            <End Role="Proje" EntitySet="Proje" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="devExpDenemeModelStoreContainer" CdmEntityContainer="devExpDenemeEntities">
+          <EntitySetMapping Name="Proje">
+            <EntityTypeMapping TypeName="devExpDenemeModel.Proje">
+              <MappingFragment StoreEntitySet="Proje">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="SurecId" ColumnName="SurecId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sozlesme">
+            <EntityTypeMapping TypeName="devExpDenemeModel.Sozlesme">
+              <MappingFragment StoreEntitySet="Sozlesme">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="Detay" ColumnName="Detay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Surec">
+            <EntityTypeMapping TypeName="devExpDenemeModel.Surec">
+              <MappingFragment StoreEntitySet="Surec">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="veriGetir">
+            <EntityTypeMapping TypeName="devExpDenemeModel.veriGetir">
+              <MappingFragment StoreEntitySet="veriGetir">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="Detay" ColumnName="Detay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="veriGetir2">
+            <EntityTypeMapping TypeName="devExpDenemeModel.veriGetir2">
+              <MappingFragment StoreEntitySet="veriGetir2">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="SurecId" ColumnName="SurecId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="veriGetir3">
+            <EntityTypeMapping TypeName="devExpDenemeModel.veriGetir3">
+              <MappingFragment StoreEntitySet="veriGetir3">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
